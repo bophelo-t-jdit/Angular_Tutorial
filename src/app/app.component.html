@@ -1,0 +1,28 @@
+<div class="content" role="main">
+  <input [(ngModel)]="numberInput" class="numberInput" />
+  <br /><br />
+  <button (click)="AddNumber()">Add</button>
+  <button (click)="RemoveNumber()" *ngIf="numbers.length >= 1">Remove</button>
+  <select [(ngModel)]="selectedValue" *ngIf="numbers.length >= 1">
+    <option value="select">select</option>
+    <option *ngFor="let option of options" [value]="option.value">
+      {{ option.value }}
+    </option>
+  </select>
+  <br /><br />
+  <p>Numbers: [{{ numbers.join(", ") }}]</p>
+  <p>Numbers (Ascending): [{{ Ascending(numbers).join(", ") }}]</p>
+  <p>Numbers (Descending): [{{ Descending(numbers).join(", ") }}]</p>
+  <p>Mode: {{ Mode(numbers) ?? "N/A" }}</p>
+  <p>Median: {{ Median(numbers) ?? "N/A" }}</p>
+  <p>
+    Mean:
+    {{ Mean(numbers) ?? "N/A" }}
+  </p>
+  <p>Average: {{ Average(numbers) ?? "N/A" }}</p>
+  <p>Min: {{ MinPercentile(numbers) ?? "N/A" }}</p>
+  <p>25 % = {{ TFPercentile(numbers) ?? "N/A" }}</p>
+  <p>75% = {{ SFPercentile(numbers) ?? "N/A" }}</p>
+  <p>Max: {{ MaxPercentile(numbers) ?? "N/A" }}</p>
+  <router-outlet />
+</div>
